@@ -20,6 +20,7 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
+    // return dd(implode('|',auth()->user()->getRoleNames()->toArray()));
     if(auth()->user()->hasRole('Admin')){
         return redirect()->route('admin.dashboard');
     }

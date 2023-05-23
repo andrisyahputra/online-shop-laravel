@@ -483,6 +483,7 @@
                                     <li>
                                         <form action="{{ route('logout') }}" method="post" id="logout_form">
                                             @csrf
+                                            {{-- @method('delete') --}}
                                             <div class="dropdown-item" onclick="logout('#logout_form')">
                                                 <i class="bx bx-power-off me-2"></i>
                                                 <span class="align-middle">Log Out</span>

@@ -1,30 +1,33 @@
-<!-- Icons. Uncomment required icon fonts -->
-<link rel="stylesheet" href="{{ URL::asset("/sneat/assets/vendor/fonts/boxicons.css") }}" />
+<!-- Core JS -->
+    <!-- build:js assets/vendor/js/core.js -->
+    <script src="{{ URL::asset("/sneat/assets/vendor/libs/jquery/jquery.js") }}"></script>
+    <script src="{{ URL::asset("/sneat/assets/vendor/libs/popper/popper.js") }}"></script>
+    <script src="{{ URL::asset("/sneat/assets/vendor/js/bootstrap.js") }}"></script>
+    <script src="{{ URL::asset("/sneat/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js") }}"></script>
 
-<!-- Core CSS -->
-<link rel="stylesheet" href="{{ URL::asset("/sneat/assets/vendor/css/core.css") }}" class="template-customizer-core-css" />
-<link rel="stylesheet" href="{{ URL::asset("/sneat/assets/vendor/css/theme-default.css") }}" class="template-customizer-theme-css" />
-<link rel="stylesheet" href="{{ URL::asset("/sneat/assets/css/demo.css") }}" />
+    <script src="{{ URL::asset("/sneat/assets/vendor/js/menu.js") }}"></script>
+    <!-- endbuild -->
 
-<!-- Vendors CSS -->
-<link rel="stylesheet" href="{{ URL::asset("/sneat/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css") }}" />
+    <!-- Vendors JS -->
+    <script src="{{ URL::asset("/sneat/assets/vendor/libs/apex-charts/apexcharts.js") }}"></script>
 
-<link rel="stylesheet" href="{{ URL::asset("/sneat/assets/vendor/libs/apex-charts/apex-charts.css") }}" />
+    <!-- Main JS -->
+    <script src="{{ URL::asset("/sneat/assets/js/main.js") }}"></script>
 
-<!-- Page CSS -->
+    <!-- Page JS -->
+    <script src="{{ URL::asset("/sneat/assets/js/dashboards-analytics.js") }}"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
 
-<!-- Helpers -->
-<script src="{{ URL::asset("/sneat/assets/vendor/js/helpers.js") }}"></script>
-
-<!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
-<!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
-<script src="{{ URL::asset("/sneat/assets/js/config.js") }}"></script>
-
-<script>
-    function logout(form_id){
-var conf = confirm('Yakin mau keluar')
-        if(conf){
-            $(form_id).submit()
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <script>
+        $(document).ready(function(){
+            new DataTable('#myTable');
+        })
+        function logout(form_id){
+            var conf = confirm('Yakin Ingin Keluar ?')
+            if(conf){
+                $(form_id).submit()
+            }
         }
-    }
-</script>
+    </script>

@@ -16,6 +16,7 @@
 
     <!-- Page JS -->
     <script src="{{ URL::asset("/sneat/assets/js/dashboards-analytics.js") }}"></script>
+
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
 
     <!-- Place this tag in your head or just before your close body tag. -->
@@ -30,4 +31,38 @@
                 $(form_id).submit()
             }
         }
+        // let table = new DataTable('#myTable');
+        function send_form(form_id){
+            // alert(form_id) //tes
+
+            let form = $(form_id)
+            let btn = form.find('#btn_submit')
+            let icon_btn = btn.find('i')
+
+            let action = form.attr('action')
+            let method = form.attr('method')
+            let data = new FormData(form[0])
+
+            // icon_btn.replaceWith('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>');
+            $.ajax({
+                url: action,
+                data: data,
+                method: method,
+                contentType: false,
+                processData: false,
+                beforeSend: function(){
+                    icon_btn.replaceWith('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>');
+                },
+                success: function(response){
+                    console.log(response);
+                },
+                error: function(response){
+
+                },
+                complete: function(){
+                    btn.find('span').replaceWith(icon_btn)
+                }
+            })
+        }
     </script>
+

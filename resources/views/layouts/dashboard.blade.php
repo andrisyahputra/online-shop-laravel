@@ -194,9 +194,11 @@
                 <div class="content-wrapper">
                     <!-- Content -->
                     <div class="container-xxl flex-grow-1 container-p-y">
-
+                        <div>
+                            <h3>{{ $title }}</h3>
+                        </div>
                     @yield('content')
-                    
+
                   </div>
                     <!-- / Content -->
 

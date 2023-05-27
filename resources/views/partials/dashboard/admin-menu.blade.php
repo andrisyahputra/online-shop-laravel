@@ -5,8 +5,8 @@
     </a>
 </li>
 
-<li class="menu-item">
-    <a href="{{ url('index.html') }}" class="menu-link">
+<li class="menu-item {{ $page == 'kategori' ? 'active' : '' }}">
+    <a href="{{ route('kategori.index') }}" class="menu-link">
         <i class="menu-icon tf-icons bx bx-home-circle"></i>
         <div data-i18n="Analytics">Kategori</div>
     </a>

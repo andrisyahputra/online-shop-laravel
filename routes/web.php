@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\ProfileController;
 
 /*
@@ -29,6 +30,9 @@ Route::get('/dashboard', function () {
 
 Route::group(['prefix'=>'admin','middleware'=>['auth', 'verified','role:Admin']],function(){
     Route::get('dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+    Route::resources([
+        'kategori'=> KategoriController::class
+    ]);
 });
 
 Route::middleware('auth')->group(function () {

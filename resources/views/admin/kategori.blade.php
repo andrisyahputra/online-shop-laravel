@@ -52,6 +52,7 @@
                 <div class="modal-body">
                     <label for="" class="form-label">Nama Kategori</label>
                     <input type="text" class="form-control" name="nama" placeholder="Masukkan Nama Kategori">
+                    <div class="text-danger error_alert" id="nama_error_alert"></div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" onclick="send_form('#form')" id="btn_submit"> <i class="bi bi-files"></i> Simpan</button>

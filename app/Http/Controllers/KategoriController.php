@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kategori;
+use App\Helper\FormHelper;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Validator;
 
 class KategoriController extends Controller
 {
@@ -34,7 +37,23 @@ class KategoriController extends Controller
     public function store(Request $request)
     {
         //
-        return response()->json('berhasil', 200);
+        // return response()->json('berhasil', 200);
+        try {
+            //code...
+            $validator = Validator::make($request->all(),[
+                'nama'=>['required']
+            ]);
+            if($validator->fails()){
+                return FormHelper::response_json(false,'input tidak valid', $validator->errors(),401);
+            }
+            $data = $validator->validated();
+            Kategori::create($data);
+            return FormHelper::response_json(true,'berhasil simpan data', $request->all(),200);
+        } catch (\Throwable $th) {
+            //throw $th;
+            Log::debug('KategoriController::store()'.$th->getMessage());
+            return FormHelper::response_json(false,'terjadi masalahh', $th->getMessage(),500);
+        }
     }
 
     /**

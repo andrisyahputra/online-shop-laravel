@@ -52,12 +52,22 @@
                 processData: false,
                 beforeSend: function(){
                     icon_btn.replaceWith('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>');
+                    form.find('input, select, textarea').removeClass('is-invalid')
+                    form.find('.error_alert').text('')
                 },
                 success: function(response){
                     console.log(response);
                 },
                 error: function(response){
+                    // console.log(response);
+                    let res = response.responseJSON
+                    $.each(res.data, function (index, value) {
+                        value = value[0]
+                        form.find('[name="'+ index +'"]').addClass('is-invalid')
+                        form.find('#'+ index +'_error_alert').text(value)
 
+                        // console.log(value[0]);
+                    });
                 },
                 complete: function(){
                     btn.find('span').replaceWith(icon_btn)

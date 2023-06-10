@@ -87,6 +87,7 @@ class KategoriController extends Controller
         //
         try {
             //code...
+            DB::beginTransaction();
             $validator = Validator::make($request->all(),[
                 'nama'=>['required']
             ]);
@@ -95,10 +96,12 @@ class KategoriController extends Controller
             }
             $data = $validator->validated();
             $kategori->update($data);
+            DB::commit();
             session()->flash('success','Berhasil Diubah');
             return FormHelper::response_json(true,'berhasil simpan data', route('kategori.index'),200);
         } catch (\Throwable $th) {
             //throw $th;
+            DB::rollBack();
             Log::debug('KategoriController::update()'.$th->getMessage());
             return FormHelper::response_json(false,'terjadi masalahh', $th->getMessage(),500);
         }

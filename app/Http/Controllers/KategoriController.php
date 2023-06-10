@@ -52,7 +52,7 @@ class KategoriController extends Controller
             $data = $validator->validated();
             Kategori::create($data);
             DB::commit();
-            session()->flash('success','Berhasil Simpan');
+            session()->flash('success','Simpan');
             return FormHelper::response_json(true,'berhasil simpan data', route('kategori.index'),200);
         } catch (\Throwable $th) {
             //throw $th;
@@ -97,7 +97,7 @@ class KategoriController extends Controller
             $data = $validator->validated();
             $kategori->update($data);
             DB::commit();
-            session()->flash('success','Berhasil Diubah');
+            session()->flash('success','Diubah');
             return FormHelper::response_json(true,'berhasil simpan data', route('kategori.index'),200);
         } catch (\Throwable $th) {
             //throw $th;
@@ -113,5 +113,18 @@ class KategoriController extends Controller
     public function destroy(Kategori $kategori)
     {
         //
+        try {
+            //code...
+            DB::beginTransaction();
+            $kategori->delete();
+            DB::commit();
+            return redirect()->back()->with('success','Berhasil di hapus !');
+
+        } catch (\Throwable $th) {
+            //throw $th;
+            DB::rollBack();
+            Log::debug('KategoriController::destroy()'.$th->getMessage());
+            return redirect()->back()->with('success','Terjadi Masalah');
+        }
     }
 }

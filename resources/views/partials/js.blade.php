@@ -21,6 +21,7 @@
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     @stack('js')
 
@@ -29,10 +30,36 @@
             new DataTable('#myTable');
         })
         function logout(form_id){
-            var conf = confirm('Yakin Ingin Keluar ?')
-            if(conf){
-                $(form_id).submit()
-            }
+            Swal.fire({
+                title: 'Yakin Ingin Keluar?',
+                text: "Anda akan keluar dari aplikasi",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Iya',
+                cencelButtonText: 'batal'
+                }).then((result) => {
+                if (result.isConfirmed) {
+                    $($form_id).submit()
+                }
+                })
+        }
+        function hapus_data(form_id){
+            Swal.fire({
+                title: 'Ingin mau dihapus data?',
+                text: "Data akan dihapus permananen",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Iya',
+                cencelButtonText: 'batal'
+                }).then((result) => {
+                if (result.isConfirmed) {
+                    $($form_id).submit()
+                }
+                })
         }
         // let table = new DataTable('#myTable');
         function send_form(form_id){

@@ -41,14 +41,14 @@
                 cencelButtonText: 'batal'
                 }).then((result) => {
                 if (result.isConfirmed) {
-                    $($form_id).submit()
+                    $(form_id).submit()
                 }
                 })
         }
         function hapus_data(form_id){
             Swal.fire({
                 title: 'Ingin mau dihapus data?',
-                text: "Data akan dihapus permananen",
+                text: "Data akan dihapus permanen",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -57,7 +57,7 @@
                 cencelButtonText: 'batal'
                 }).then((result) => {
                 if (result.isConfirmed) {
-                    $($form_id).submit()
+                    $(form_id).submit()
                 }
                 })
         }

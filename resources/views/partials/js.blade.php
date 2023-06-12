@@ -23,12 +23,24 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+    <script src="{{ URL::asset('js/currency.js') }}"></script>
+
     @stack('js')
 
     <script>
+
         $(document).ready(function(){
-            new DataTable('#myTable');
+// tabel
+let sx = false;
+    if ($(window).width() < 992) {
+        sx = true;
+    }
+
+    new DataTable('#myTable', {
+        scrollX: sx
+    });
         })
+        // akhir tabel
         function logout(form_id){
             Swal.fire({
                 title: 'Yakin Ingin Keluar?',

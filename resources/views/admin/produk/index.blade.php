@@ -16,7 +16,6 @@
                 </tr>
             </thead>
             <tbody>
-                a
                 @foreach ($produks as $item)
                 <tr>
                     <td class="text-nowrap">{{ $loop->iteration}}</td>

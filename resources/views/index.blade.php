@@ -106,7 +106,7 @@
                                             <div class="col-xl-3 col-lg-4 col-md-4 col-12">
 												<div class="single-product">
 													<div class="product-img">
-														<a href="{{ url("product-details.html") }}">
+														<a href="{{ route('product-details', $produk->id) }}">
 															<img class="default-img" src="{{ Storage::url($produk->foto) }}" alt="{{ $produk->foto }}">
 															<img class="hover-img" src="{{ Storage::url($produk->foto) }}" alt="{{ $produk->foto }}">
 														</a>
@@ -122,9 +122,9 @@
 														</div>
 													</div>
 													<div class="product-content">
-														<h3><a href="{{ url("product-details.html") }}">Women Hot Collection</a></h3>
+														<h3><a href="{{ route('product-details', $produk->id) }}">{{ $produk->nama }}</a></h3>
 														<div class="product-price">
-															<span>$29.00</span>
+															<span>Rp. {{ number_format($produk->harga) }}</span>
 														</div>
 													</div>
 												</div>
@@ -143,7 +143,7 @@
                                             <div class="col-xl-3 col-lg-4 col-md-4 col-12">
 												<div class="single-product">
 													<div class="product-img">
-														<a href="{{ url("product-details.html") }}">
+														<a href="{{ route('product-details', $produk->id) }}">
 															<img class="default-img" src="{{ Storage::url($produk->foto) }}" alt="{{ $produk->foto }}">
 															<img class="hover-img" src="{{ Storage::url($produk->foto) }}" alt="{{ $produk->foto }}">
 														</a>
@@ -159,9 +159,9 @@
 														</div>
 													</div>
 													<div class="product-content">
-														<h3><a href="{{ url("product-details.html") }}">Women Hot Collection</a></h3>
+														<h3><a href="{{ route('product-details', $produk->id) }}">{{ $produk->nama }}</a></h3>
 														<div class="product-price">
-															<span>$29.00</span>
+															<span>Rp. {{ number_format($produk->harga) }}</span>
 														</div>
 													</div>
 												</div>

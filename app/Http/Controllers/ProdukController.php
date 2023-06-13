@@ -83,6 +83,9 @@ class ProdukController extends Controller
     public function show(Produk $produk)
     {
         //
+        $data['title'] = 'Detail Produk';
+        $data['produk'] = $produk;
+        return view('product-details', $data);
     }
 
     /**

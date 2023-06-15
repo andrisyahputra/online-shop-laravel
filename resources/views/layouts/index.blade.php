@@ -384,6 +384,27 @@
 	</footer>
 	<!-- /End Footer Area -->
 
+    <div class="modal fade" id="add_cart_modal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
+        <div class="modal-dialog" style="width: 300px !important" role="document">
+            <form method="post" action="{{ route('keranjang.store') }}">
+                @csrf
+                <div class="modal-content">
+                    <input type="hidden" name="produk_id" id="produk_id" value="">
+                    <div class="modal-body p-3" style="height: 100px !important; overflow-y: hidden">
+                        <div class="mb-3">
+                          <label for="kuantitas" class="form-label">Kuantitas</label>
+                          <input type="number"
+                            class="form-control" name="kuantitas" id="kuantitas" placeholder="Masukan jumlah kuantitas">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" style="padding: 10px !important">Simpan</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
 	<!-- Jquery -->
     <script src="{{ asset("/eshop/js/jquery.min.js") }}"></script>
     <script src="{{ asset("/eshop/js/jquery-migrate-3.0.0.js") }}"></script>
@@ -416,5 +437,14 @@
 	<script src="{{ asset("/eshop/js/easing.js") }}"></script>
 	<!-- Active JS -->
 	<script src="{{ asset("/eshop/js/active.js") }}"></script>
+
+@stack('js')
+<script>
+    function add_card($produk_id){
+                let modal = $('#add_cart_modal')
+                modal.find('#produk_id').val($produk_id)
+                modal.modal('show')
+            }
+</script>
 </body>
 </html>

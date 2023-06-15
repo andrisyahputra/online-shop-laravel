@@ -11,11 +11,7 @@
                 <div class="mt-3" style="white-space: pre-line">{{ $produk->deskripsi }}</div>
                 <h4 class="text-warning">Rp {{ number_format($produk->harga) }}</h4>
                 <div class="mt-3 d-flex gap-1">
-                    <form action="{{ route('keranjang.store') }}" method="POST">
-                        @csrf
-                        <input type="hidden" name="produk_id" value="{{ $produk->id }}">
-                        <button type="submit" class="btn btn-primary">Tambah Keranjang</button>
-                    </form>
+                    <button type="submit" class="btn btn-primary" onclick="add_card({{ $produk->id }})">Tambah Keranjang</button>
                     <button type="button" class="btn btn-primary">Beli</button>
                 </div>
             </div>

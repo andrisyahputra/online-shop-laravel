@@ -1,6 +1,7 @@
 @extends('layouts.index')
 @section('content')
-    <!-- Slider Area -->
+@dd($kerajangs)
+<!-- Slider Area -->
 	<section class="hero-slider">
 		<!-- Single Slider -->
 		<div class="single-slider" style="background-image: url({{ URL::asset('img/header.jpg') }})">
@@ -11,7 +12,7 @@
 							<div class="row">
 								<div class="col-lg-7 col-12">
 									<div class="hero-text">
-										<h1><span class="text-white">UP TO 50% OFF </span>Shirt For Man</h1>
+										<h1><span class="text-white">UP TO 50% OFF </span>Shirt For Girls</h1>
 										<p class="text-white">Maboriosam in a nesciung eget magnae <br> dapibus disting tloctio in the find it pereri <br> odiy maboriosm.</p>
 										<div class="button">
 											<a href="{{ url("#") }}" class="btn">Shop Now!</a>
@@ -117,7 +118,8 @@
 																<a title="Compare" href="{{ url("#") }}"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
 															</div>
 															<div class="product-action-2">
-																<a title="Add to cart" href="{{ url("#") }}">Add to cart</a>
+                                                                <a onclick="add_card({{ $produk->id }})">Tambah Keranjan</a>
+
 															</div>
 														</div>
 													</div>
@@ -154,7 +156,8 @@
 																<a title="Compare" href="{{ url("#") }}"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
 															</div>
 															<div class="product-action-2">
-																<a title="Add to cart" href="{{ url("#") }}">Add to cart</a>
+                                                                <a onclick="add_card({{ $produk->id }})">Tambah Keranjan</a>
+
 															</div>
 														</div>
 													</div>
@@ -241,7 +244,7 @@
 										<a title="Compare" href="{{ url("#") }}"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
 									</div>
 									<div class="product-action-2">
-										<a title="Add to cart" href="{{ url("#") }}">Add to cart</a>
+										<a title="Tambah Keranjan" href="{{ url("#") }}">Tambah Keranjan</a>
 									</div>
 								</div>
 							</div>
@@ -268,7 +271,7 @@
 										<a title="Compare" href="{{ url("#") }}"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
 									</div>
 									<div class="product-action-2">
-										<a title="Add to cart" href="{{ url("#") }}">Add to cart</a>
+										<a title="Tambah Keranjan" href="{{ url("#") }}">Tambah Keranjan</a>
 									</div>
 								</div>
                             </div>
@@ -295,7 +298,7 @@
 										<a title="Compare" href="{{ url("#") }}"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
 									</div>
 									<div class="product-action-2">
-										<a title="Add to cart" href="{{ url("#") }}">Add to cart</a>
+										<a title="Tambah Keranjan" href="{{ url("#") }}">Tambah Keranjan</a>
 									</div>
 								</div>
                             </div>
@@ -321,7 +324,7 @@
 										<a title="Compare" href="{{ url("#") }}"><i class="ti-bar-chart-alt"></i><span>Add to Compare</span></a>
 									</div>
 									<div class="product-action-2">
-										<a title="Add to cart" href="{{ url("#") }}">Add to cart</a>
+										<a title="Tambah Keranjan" href="{{ url("#") }}">Tambah Keranjan</a>
 									</div>
 								</div>
                             </div>
@@ -778,7 +781,7 @@
 										<!--/ End Input Order -->
 									</div>
 									<div class="add-to-cart">
-										<a href="{{ url("#") }}" class="btn">Add to cart</a>
+										<a href="{{ url("#") }}" class="btn">Tambah Keranjan</a>
 										<a href="{{ url("#") }}" class="btn min"><i class="ti-heart"></i></a>
 										<a href="{{ url("#") }}" class="btn min"><i class="fa fa-compress"></i></a>
 									</div>
@@ -799,4 +802,16 @@
             </div>
     </div>
     <!-- Modal end -->
-@endsection
+
+
+    <!-- Modal Body -->
+    <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
+
+
+    @push('js')
+        <script>
+
+        </script>
+    @endpush
+
+    @endsection

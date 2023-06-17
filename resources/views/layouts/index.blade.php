@@ -52,6 +52,7 @@
 <!-- Bootstrap theme -->
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/>
 
+@stack('css')
 
 </head>
 <body class="js">
@@ -409,9 +410,12 @@
                     <input type="hidden" name="produk_id" id="produk_id" value="">
                     <div class="modal-body p-3" style="height: 100px !important; overflow-y: hidden">
                         <div class="mb-3">
-                          <label for="kuantitas" class="form-label">Kuantitas</label>
+                          <div class="d-flex justify-content-between">
+                            <label for="kuantitas" class="form-label">Kuantitas</label>
+                          <label for="kuantitas" class="form-label" id="num_qty"></label>
+                          </div>
                           <input type="number"
-                            class="form-control" name="kuantitas" id="kuantitas" placeholder="Masukan jumlah kuantitas" min="1" value="1" max="20">
+                            class="form-control" name="kuantitas" id="kuantitas" placeholder="Masukan jumlah kuantitas" value="1">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -461,9 +465,11 @@
 
 @stack('js')
 <script>
-    function add_card($produk_id){
+    function add_card(produk_id,stok){
                 let modal = $('#add_cart_modal')
-                modal.find('#produk_id').val($produk_id)
+                modal.find('#produk_id').val(produk_id)
+                modal.find('#num_qty').text('Tersedia '+ stok)
+                modal.find('input[name="kuantitas"]').attr('max', stok)
                 modal.modal('show')
             }
 </script>

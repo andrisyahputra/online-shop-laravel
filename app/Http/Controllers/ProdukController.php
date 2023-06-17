@@ -51,6 +51,7 @@ class ProdukController extends Controller
             'foto'=>['required','image','mimes:png,jpg,gif,webp','max:1000'],
             'nama'=>['required','string','max:50'],
             'harga'=>['required'],
+            'stok'=>['required','numeric','min:1'],
             'deskripsi'=>['required'],
             'kategori_id'=>['required','numeric']
         ]);
@@ -120,6 +121,7 @@ class ProdukController extends Controller
             'foto'=>['nullable','image','mimes:png,jpg,gif,webp','max:1000'],
             'nama'=>['required','string','max:50'],
             'harga'=>['required'],
+            'stok'=>['required','numeric'],
             'deskripsi'=>['required'],
             'kategori_id'=>['required','numeric']
         ]);

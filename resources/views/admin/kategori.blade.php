@@ -58,7 +58,7 @@
     aria-labelledby="modalTitleId" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
         <div class="modal-content">
-            <form action="{{ route('kategori.store') }}" method="POST" id="form">
+            <form class="form_kategori" action="{{ route('kategori.store') }}" method="POST" id="form" onkeydown="return event.key != 'Enter';">
                 @csrf
 
                 <div class="modal-header">
@@ -84,7 +84,7 @@
     role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
         <div class="modal-content">
-            <form method="POST" id="edit_form">
+            <form class="form_kategori" method="POST" id="edit_form" onkeydown="return event.key != 'Enter';">
                 @csrf
                 @method('put')
                 <div class="modal-header">
@@ -120,6 +120,9 @@
             });
             modal.modal('show')
         }
+
+
+
     </script>
 @endpush
 

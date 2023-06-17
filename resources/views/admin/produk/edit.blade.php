@@ -31,6 +31,15 @@
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
+                    <div class="form-group mb-3">
+                        <label for="stok">Stok:</label>
+
+                            <input type="number" class="form-control @error('stok') is-invalid @enderror" id="stok" name="stok" placeholder="Stok Produk" value="{{ old('stok', $produk->stok) }}" aria-describedby="basic-addon1" min="-1">
+
+                        @error('stok')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
 
                     <div class="form-group mb-3">
                         <label for="kategori_id">Kategori:</label>

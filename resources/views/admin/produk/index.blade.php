@@ -10,6 +10,7 @@
                     <th class="text-nowrap">Foto</th>
                     <th class="text-nowrap">Nama</th>
                     <th class="text-nowrap">Harga</th>
+                    <th class="text-nowrap">Stok</th>
                     <th class="text-nowrap">Kategori</th>
                     <th class="text-nowrap">Tanggal</th>
                     <th class="text-nowrap" style="width: 170px">Tindakan</th>
@@ -26,6 +27,7 @@
                     </td>
                     <td class="text-nowrap">{{ $item->nama }}</td>
                     <td class="text-nowrap">Rp {{ number_format($item->harga) }}</td>
+                    <td class="text-nowrap">{{ $item->stok }}</td>
                     <td class="text-nowrap">{{ $item->kategori->nama }}</td>
                     <td class="text-nowrap">{{ date('d M Y', strtotime($item->created_at)) }}</td>
                     <td class="text-nowrap d-flex gap-2">

@@ -20,6 +20,7 @@ class ProdukSeeder extends Seeder
                 'nama'=>'Example ' . $i,
                 'harga'=> 10000,
                 'deskripsi'=>'Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat suscipit facere, recusandae omnis nihil sint culpa. Cumque consequatur maxime mollitia nisi porro delectus commodi hic!',
+                'stok' => 200,
                 'kategori_id'=>$i
             ]);
         }

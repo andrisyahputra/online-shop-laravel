@@ -32,6 +32,17 @@
                     </div>
 
                     <div class="form-group mb-3">
+                        <label for="stok">Stok:</label>
+
+                            <input type="number" class="form-control @error('stok') is-invalid @enderror" id="stok" name="stok" placeholder="Stok Produk" value="{{ old('stok', 1) }}" aria-describedby="basic-addon1" min="1">
+
+                        @error('stok')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+
+                    <div class="form-group mb-3">
                         <label for="kategori_id">Kategori:</label>
                         <select class="form-control @error('kategori_id') is-invalid @enderror" id="kategori_id" name="kategori_id" placeholder="Pilih kategori">
                             <option value="">Pilih Kategori</option>

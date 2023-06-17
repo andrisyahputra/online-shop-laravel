@@ -145,27 +145,33 @@
 								<!-- Shopping Item -->
 								<div class="shopping-item">
 									<div class="dropdown-cart-header">
-										<span>2 Items</span>
-										<a href="{{ url("#") }}">View Cart</a>
+										<span>{{ $kerajangs->count() }} Items</span>
 									</div>
 									<ul class="shopping-list">
-										<li>
-											<a href="{{ url("#") }}" class="remove" title="Remove this item"><i class="fa fa-remove"></i></a>
-											<a class="cart-img" href="{{ url("#") }}"><img src="https://via.placeholder.com/70x70" alt="#"></a>
-											<h4><a href="{{ url("#") }}">Woman Ring</a></h4>
-											<p class="quantity">1x - <span class="amount">$99.00</span></p>
+                                        @php
+                                            $total = 0;
+                                        @endphp
+										@foreach ($kerajangs as $item)
+                                        @php
+                                            $total += $item->produk->harga * $item->kuantitas;
+                                        @endphp
+                                        <li>
+											<form action="{{ route('keranjang.destroy', $item->id) }}" method="post">
+												@csrf
+												@method('delete')
+												<button class="remove" title="Remove this item"><i
+														class="fa fa-remove"></i></button>
+											</form>
+											<a class="cart-img" href="{{ url("#") }}"><img src="{{ Storage::url($item->produk->foto) }}" alt="{{ Storage::url($item->produk->foto) }}"></a>
+											<h4><a href="{{ url("#") }}">{{ $item->produk->nama }}</a></h4>
+											<p class="quantity">{{ $item->kuantitas }}x - <span class="amount">Rp {{ number_format($item->produk->harga * $item->kuantitas) }}</span></p>
 										</li>
-										<li>
-											<a href="{{ url("#") }}" class="remove" title="Remove this item"><i class="fa fa-remove"></i></a>
-											<a class="cart-img" href="{{ url("#") }}"><img src="https://via.placeholder.com/70x70" alt="#"></a>
-											<h4><a href="{{ url("#") }}">Woman Necklace</a></h4>
-											<p class="quantity">1x - <span class="amount">$35.00</span></p>
-										</li>
+                                        @endforeach
 									</ul>
 									<div class="bottom">
 										<div class="total">
 											<span>Total</span>
-											<span class="total-amount">$134.00</span>
+											<span class="total-amount">Rp {{ number_format($total) }}</span>
 										</div>
 										<a href="{{ url("checkout.html") }}" class="btn animate">Checkout</a>
 									</div>

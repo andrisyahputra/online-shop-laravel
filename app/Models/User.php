@@ -43,6 +43,6 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
     public function kerajangs(){
-        return $this->hasMany(Kerajang::class, 'user_id');
+        return $this->hasMany(kerajang::class, 'user_id');
     }
 }

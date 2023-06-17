@@ -1,6 +1,6 @@
 @extends('layouts.index')
 @section('content')
-@dd($kerajangs)
+{{-- @dd($kerajangs) --}}
 <!-- Slider Area -->
 	<section class="hero-slider">
 		<!-- Single Slider -->

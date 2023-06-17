@@ -22,7 +22,7 @@ use App\Http\Controllers\ProfileController;
 Route::get('/', [indexController::class,'index'])->name('home');
 Route::get('detail-produk/{produk}', [ProdukController::class, 'show'])->name('product-details');
 Route::resources([
-    'keranjang'=> KerajangController::class
+    'kerajang'=> KerajangController::class
 ]);
 
 Route::get('/dashboard', function () {

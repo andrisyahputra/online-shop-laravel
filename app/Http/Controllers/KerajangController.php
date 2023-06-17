@@ -93,26 +93,26 @@ class KerajangController extends Controller
     public function destroy(kerajang $kerajang)
     {
         // return 'test';
-        return dd($kerajang->id);
-    //     try {
-    //         if (!Auth::check()) {
-    //             return redirect()->route('login');
-    //         }
+        // return dd($kerajang->id);
+        try {
+            if (!Auth::check()) {
+                return redirect()->route('login');
+            }
 
-    //         DB::beginTransaction();
+            DB::beginTransaction();
 
-    //         // Hanya pemilik keranjang yang bisa menghapusnya
-    //         if ($kerajang->user_id !== auth()->user()->id) {
-    //             return redirect()->back()->with('error', 'Anda tidak memiliki akses untuk menghapus keranjang ini.');
-    //         }
+            // Hanya pemilik keranjang yang bisa menghapusnya
+            if ($kerajang->user_id !== auth()->user()->id) {
+                return redirect()->back()->with('error', 'Anda tidak memiliki akses untuk menghapus keranjang ini.');
+            }
 
-    //         $kerajang->delete();
-    //         DB::commit();
-    //         return redirect()->back()->with('success', 'Keranjang berhasil dihapus.');
-    //     } catch (\Throwable $th) {
-    //         DB::rollback();
-    //         Log::debug($th->getMessage());
-    //         return redirect()->back()->with('error', 'Terjadi masalah saat menghapus keranjang.');
-    //     }
+            $kerajang->delete();
+            DB::commit();
+            return redirect()->back()->with('success', 'Keranjang berhasil dihapus.');
+        } catch (\Throwable $th) {
+            DB::rollback();
+            Log::debug($th->getMessage());
+            return redirect()->back()->with('error', 'Terjadi masalah saat menghapus keranjang.');
+        }
     }
 }

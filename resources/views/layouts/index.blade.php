@@ -43,6 +43,15 @@
     <link rel="stylesheet" href="{{ asset("/eshop/css/responsive.css") }}">
 
 
+<!-- CSS -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+<!-- Default theme -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
+<!-- Semantic UI theme -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css"/>
+<!-- Bootstrap theme -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/>
+
 
 </head>
 <body class="js">
@@ -82,7 +91,7 @@
 								<li><i class="ti-location-pin"></i> Store location</li>
 								<li><i class="ti-alarm-clock"></i> <a href="{{ url("#") }}">Daily deal</a></li>
 								<li><i class="ti-user"></i> <a href="{{ url("#") }}">My account</a></li>
-								<li><i class="ti-power-off"></i><a href="{{ url("login.html#") }}">Login</a></li>
+								<li><i class="ti-power-off"></i><a href="{{ route('login') }}">Login</a></li>
 							</ul>
 						</div>
 						<!-- End Top Right -->
@@ -140,7 +149,8 @@
 							<div class="sinlge-bar">
 								<a href="{{ url("#") }}" class="single-icon"><i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
 							</div>
-							<div class="sinlge-bar shopping">
+                            @if(Auth::check())
+                            <div class="sinlge-bar shopping">
 								<a href="{{ url("#") }}" class="single-icon"><i class="ti-bag"></i> <span class="total-count">2</span></a>
 								<!-- Shopping Item -->
 								<div class="shopping-item">
@@ -156,7 +166,7 @@
                                             $total += $item->produk->harga * $item->kuantitas;
                                         @endphp
                                         <li>
-											<form action="{{ route('keranjang.destroy', $item->id) }}" method="post">
+											<form action="{{ route('kerajang.destroy', $item->id) }}" method="post">
 												@csrf
 												@method('delete')
 												<button class="remove" title="Remove this item"><i
@@ -178,6 +188,7 @@
 								</div>
 								<!--/ End Shopping Item -->
 							</div>
+                            @endif
 						</div>
 					</div>
 				</div>
@@ -392,7 +403,7 @@
 
     <div class="modal fade" id="add_cart_modal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
         <div class="modal-dialog" style="width: 300px !important" role="document">
-            <form method="post" action="{{ route('keranjang.store') }}">
+            <form method="post" action="{{ route('kerajang.store') }}">
                 @csrf
                 <div class="modal-content">
                     <input type="hidden" name="produk_id" id="produk_id" value="">
@@ -400,7 +411,7 @@
                         <div class="mb-3">
                           <label for="kuantitas" class="form-label">Kuantitas</label>
                           <input type="number"
-                            class="form-control" name="kuantitas" id="kuantitas" placeholder="Masukan jumlah kuantitas">
+                            class="form-control" name="kuantitas" id="kuantitas" placeholder="Masukan jumlah kuantitas" min="1" value="1" max="20">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -444,6 +455,10 @@
 	<!-- Active JS -->
 	<script src="{{ asset("/eshop/js/active.js") }}"></script>
 
+
+    <!-- JavaScript -->
+<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+
 @stack('js')
 <script>
     function add_card($produk_id){
@@ -452,5 +467,16 @@
                 modal.modal('show')
             }
 </script>
+
+        @if (session('success'))
+        <script>
+            alertify.success("{{ session('success') }}");
+        </script>
+        @endif
+        @if (session('error'))
+        <script>
+            alertify.error("{{ session('error') }}");
+        </script>
+        @endif
 </body>
 </html>

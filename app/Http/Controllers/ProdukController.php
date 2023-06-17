@@ -8,6 +8,7 @@ use App\Models\Kategori;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
@@ -85,6 +86,11 @@ class ProdukController extends Controller
         //
         $data['title'] = 'Detail Produk';
         $data['produk'] = $produk;
+        $data['kerajangs'] = null;
+
+            if(Auth::check()){
+                $data['kerajangs'] = auth()->user()->kerajangs;
+            }
         return view('product-details', $data);
     }
 

@@ -16,6 +16,7 @@
 
 	<!-- StyleSheet -->
 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 	<!-- Bootstrap -->
 	<link rel="stylesheet" href="{{ asset("/eshop/css/bootstrap.css") }}">
 	<!-- Magnific Popup -->
@@ -183,7 +184,7 @@
 				<div class="cat-nav-head">
 					<div class="row">
 						<div class="col-lg-3">
-							<div class="all-category">
+							{{-- <div class="all-category">
 								<h3 class="cat-heading"><i class="fa fa-bars" aria-hidden="true"></i>CATEGORIES</h3>
 								<ul class="main-category">
 									<li><a href="{{ url("#") }}">New Arrivals <i class="fa fa-angle-right" aria-hidden="true"></i></a>
@@ -248,7 +249,7 @@
 									<li><a href="{{ url("#") }}">westrn dress</a></li>
 									<li><a href="{{ url("#") }}">denim </a></li>
 								</ul>
-							</div>
+							</div> --}}
 						</div>
 						<div class="col-lg-9 col-12">
 							<div class="menu-area">

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\indexController;
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\KeranjangController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\ProfileController;
 
@@ -19,6 +20,11 @@ use App\Http\Controllers\ProfileController;
 */
 
 Route::get('/', [indexController::class,'index'])->name('home');
+Route::get('details-produk/{produk}',[ProdukController::class, 'show'])->name('product-details');
+Route::resources([
+    'keranjang' => KeranjangController::class,
+    ]);
+
 
 Route::get('/dashboard', function () {
     // return dd(implode('|',auth()->user()->getRoleNames()->toArray()));

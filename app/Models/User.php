@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use App\Http\Controllers\PesananController;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
@@ -44,5 +46,8 @@ class User extends Authenticatable
     ];
     public function kerajangs(){
         return $this->hasMany(kerajang::class, 'user_id');
+    }
+    public function pesanans(){
+        return $this->hasMany(PesananController::class, 'user_id');
     }
 }

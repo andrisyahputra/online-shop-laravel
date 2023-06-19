@@ -13,6 +13,12 @@ class PesananController extends Controller
     public function index()
     {
         //
+        $data['title']='Pesanan';
+        $data['page']='pesanan';
+        $data['menu']='index';
+        $data['pesanans'] = Pesanan::all()->groupBy('order_id');
+        // return dd($data['pesanans']);
+        return view('admin.pesanan', $data);
     }
 
     /**

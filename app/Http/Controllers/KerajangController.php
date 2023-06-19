@@ -72,7 +72,7 @@ class KerajangController extends Controller
         // Set 3DS transaction for credit card to true
         Config::$is3ds = true;
 
-        $order_id = 'TRX- ' .time();
+        $order_id = 'TRX-' .time();
         $user_id = auth()->user()->id;
         $kerajangs = auth()->user()->kerajangs;
 

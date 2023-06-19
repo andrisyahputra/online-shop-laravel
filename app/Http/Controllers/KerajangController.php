@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\kerajang;
+use Midtrans\Config;
 use App\Models\Produk;
+use App\Models\Pesanan;
+use App\Models\kerajang;
+use App\Models\Transaksi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -36,11 +39,6 @@ class KerajangController extends Controller
         //
         // return dd($request->all());
         try {
-            if(!Auth::check()){
-                return redirect()->route('login');
-            }
-
-
             DB::beginTransaction();
             $validator = Validator::make($request->all(),[
                 'produk_id' => ['required', 'numeric'],
@@ -61,6 +59,44 @@ class KerajangController extends Controller
             // return dd(auth()->user()->id); //melihat eror
             return redirect()->back()->with('error','Terjadi Masalah');
         }
+    }
+
+    public function checkout(){
+        // dd('test');
+        // Set your Merchant Server Key
+        Config::$serverKey = env('MIDTRANS_API_KEY');
+        // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
+        Config::$isProduction = env('IS_PRODUCTION');
+        // Set sanitization on (default)
+        Config::$isSanitized = true;
+        // Set 3DS transaction for credit card to true
+        Config::$is3ds = true;
+
+        $order_id = 'TRX- ' .time();
+        $user_id = auth()->user()->id;
+        $kerajangs = auth()->user()->kerajangs;
+
+        $total_harga = 0;
+        foreach ($kerajangs as $item) {
+            Pesanan::create([
+                'order_id' => $order_id,
+                'user_id' => $user_id,
+                'produk_id' => $item->produk->id,
+                'nama' => $item->produk->nama,
+                'harga' => $item->produk->harga,
+                'kuantitas' => $item->kuantitas,
+                'total' => $item->produk->harga * $item->kuantitas
+            ]);
+            $total_harga += $item->produk->harga * $item->kuantitas;
+        }
+
+        Transaksi::create([
+            'order_id' => $order_id,
+            'pembeli' => auth()->user()->name,
+            'harga' => $total_harga
+        ]);
+        return 'test';
+
     }
 
     /**

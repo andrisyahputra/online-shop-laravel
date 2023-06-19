@@ -21,9 +21,15 @@ use App\Http\Controllers\ProfileController;
 
 Route::get('/', [indexController::class,'index'])->name('home');
 Route::get('detail-produk/{produk}', [ProdukController::class, 'show'])->name('product-details');
-Route::resources([
-    'kerajang'=> KerajangController::class
-]);
+
+Route::group(['middleware' => ['auth']], function(){
+    Route::resources([
+        'kerajang'=> KerajangController::class
+    ]);
+    Route::get('checkout-kerajang', [KerajangController::class, 'checkout'])->name('kerajang.checkout');
+});
+
+
 
 Route::get('/dashboard', function () {
     // return dd(implode('|',auth()->user()->getRoleNames()->toArray()));

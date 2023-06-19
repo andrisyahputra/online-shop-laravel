@@ -184,7 +184,7 @@
 											<span>Total</span>
 											<span class="total-amount">Rp {{ number_format($total) }}</span>
 										</div>
-										<a href="{{ url("checkout.html") }}" class="btn animate">Checkout</a>
+										<a href="{{ route('kerajang.checkout') }}" class="btn animate">Checkout</a>
 									</div>
 								</div>
 								<!--/ End Shopping Item -->

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('order_id');
             $table->string('pembeli');
             $table->string('harga');
-            $table->enum('status', ['pending','success','cancel','deny','expired'])->default('pending');
+            $table->enum('status', ['pending','success','cencel','deny','expire'])->default('pending');
             $table->timestamps();
         });
     }

@@ -62,15 +62,11 @@ class KerajangController extends Controller
     }
 
     public function checkout(){
-        // dd('test');
-        // Set your Merchant Server Key
         Config::$serverKey = env('MIDTRANS_API_KEY');
-        // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
         Config::$isProduction = env('IS_PRODUCTION');
-        // Set sanitization on (default)
         Config::$isSanitized = true;
-        // Set 3DS transaction for credit card to true
         Config::$is3ds = true;
+        Config::$overrideNotifUrl = route('payment.notify');
 
         $order_id = 'TRX-' .time();
         $user_id = auth()->user()->id;
@@ -95,6 +91,22 @@ class KerajangController extends Controller
             'pembeli' => auth()->user()->name,
             'harga' => $total_harga
         ]);
+
+        $params = [
+            'transaction_details' => [
+                'order_id' => $order_id,
+                'gross_amount' => $total_harga,
+            ]
+        ];
+
+        try {
+          $response = \Midtrans\Snap::createTransaction($params);
+            return redirect($response->redirect_url);
+        }
+        catch (\Exception $e) {
+          Log::error($e->getMessage());
+          return redirect()->back()->with('error','Terjadi Masalah.');
+        }
         return 'test';
 
     }

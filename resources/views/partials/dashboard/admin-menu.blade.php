@@ -33,15 +33,15 @@
     </ul>
 </li>
 
-<li class="menu-item">
+<li class="menu-item {{ $page == 'pesanan' ? 'active' : '' }}">
     <a href="{{ route('pesanan.index') }}" class="menu-link">
         <i class="menu-icon tf-icons bx bx-home-circle"></i>
         <div data-i18n="Analytics">Pesanan</div>
     </a>
 </li>
 
-<li class="menu-item">
-    <a href="{{ url('index.html') }}" class="menu-link">
+<li class="menu-item {{ $page == 'transaksi' ? 'active' : '' }}">
+    <a href="{{ route('transaksi.index') }}" class="menu-link">
         <i class="menu-icon tf-icons bx bx-home-circle"></i>
         <div data-i18n="Analytics">Transaksi</div>
     </a>

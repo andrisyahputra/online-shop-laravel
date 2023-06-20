@@ -8,6 +8,7 @@ use App\Http\Controllers\KerajangController;
 use App\Http\Controllers\PesananController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TransaksiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,7 +46,8 @@ Route::group(['prefix'=>'admin','middleware'=>['auth', 'verified','role:Admin']]
     Route::resources([
         'kategori'=> KategoriController::class,
         'produk'=> ProdukController::class,
-        'pesanan'=> PesananController::class
+        'pesanan'=> PesananController::class,
+        'transaksi' => TransaksiController::class
     ]);
 });
 

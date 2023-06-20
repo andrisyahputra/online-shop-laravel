@@ -13,6 +13,12 @@ class TransaksiController extends Controller
     public function index()
     {
         //
+        $data['title']='Transaksi';
+        $data['page']='transaksi';
+        $data['menu']='index';
+        $data['transaksis'] = Transaksi::all();
+        // return dd($data['pesanans']);
+        return view('admin.transaksi', $data);
     }
 
     /**

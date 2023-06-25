@@ -2,24 +2,30 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pesanan;
 use App\Models\Transaksi;
 use Midtrans\Config;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class PaymentController extends Controller
 {
     //
     public function notify(Request $request){
-        Config::$isProduction = false;
+        try {
+            Config::$isProduction = false;
         Config::$serverKey = env('MIDTRANS_API_KEY');
 
         $transaction = $request->transaction_status;
         $type = $request->payment_type;
         $order_id = $request->order_id;
         $fraud = $request->fraud_status;
-        function trx_update($order_id,$success){
+        function trx_update($order_id,$status){
             $trx = Transaksi::where('order_id', $order_id);
-            $trx->update(['status' => $success]);
+            $trx->update(['status' => $status]);
+
+            $pesanan = Pesanan::where('order_id', $order_id);
+            $pesanan->update(['status' => $status]);
         }
 
         if ($transaction == 'capture') {
@@ -43,6 +49,14 @@ class PaymentController extends Controller
             trx_update($order_id,'expire');
         } else if ($transaction == 'cancel') {
             trx_update($order_id,'cencel');
+        }
+        } catch (\Throwable $th) {
+            //throw $th;
+            Log::error($th);
+            return response()->json([
+                'status'=>false,
+                'message'=>'terjadi Kesalahan'
+            ],500);
         }
     }
 }

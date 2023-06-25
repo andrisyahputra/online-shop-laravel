@@ -18,7 +18,7 @@ class PesananController extends Controller
         $data['menu']='index';
         $data['pesanans'] = Pesanan::all()->groupBy('order_id');
         // return dd($data['pesanans']);
-        return view('admin.pesanan', $data);
+        return view('admin.pesanan.index', $data);
     }
 
     /**
@@ -40,9 +40,20 @@ class PesananController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Pesanan $pesanan)
+    public function show($order_id)
     {
         //
+        // return dd($order_id);
+        $pesanan = Pesanan::where('order_id', $order_id);
+        if($pesanan ->count() == 0){
+            return abort(404);
+        }
+        $data['title']='Detail Pesanan';
+        $data['page']='pesanan';
+        $data['menu']='show';
+        $data['pesanans'] = $pesanan->get();
+        $data['subtotal'] = $pesanan->sum('total');
+        return view('admin.pesanan.show', $data);
     }
 
     /**

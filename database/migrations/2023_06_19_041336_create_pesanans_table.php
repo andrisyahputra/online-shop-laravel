@@ -20,7 +20,7 @@ return new class extends Migration
             $table->bigInteger('harga');
             $table->integer('kuantitas');
             $table->string('total');
-            $table->enum('status',['pending','success','cancel','deny','expired','diproses','diterima'])->default('pending');
+            $table->enum('status',['pending','success','cancel','deny','expired','diproses','diterima','dikirim','tolak'])->default('pending');
             $table->timestamps();
         });
     }

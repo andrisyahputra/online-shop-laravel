@@ -18,4 +18,11 @@ class Pesanan extends Model
     public function created_at_id(){
         return Carbon::parse($this->created_at)->locale('id')->isoFormat('dddd DD-MM-YYYY HH:mm');
     }
+    public function dikirim(){
+        $pk = PesananDikirim::firstWhere('order_id', $this->order_id);
+        return (object) [
+            'resi'=> $pk->resi,
+            'expedisi'=> $pk->expedisi
+        ];
+    }
 }

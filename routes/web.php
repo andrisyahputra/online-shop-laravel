@@ -6,6 +6,7 @@ use App\Http\Controllers\indexController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\KerajangController;
 use App\Http\Controllers\PesananController;
+use App\Http\Controllers\PesananDikirimController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TransaksiController;
@@ -47,8 +48,11 @@ Route::group(['prefix'=>'admin','middleware'=>['auth', 'verified','role:Admin']]
         'kategori'=> KategoriController::class,
         'produk'=> ProdukController::class,
         'pesanan'=> PesananController::class,
+        'pesanan-dikirim'=> PesananDikirimController::class,
         'transaksi' => TransaksiController::class
     ]);
+    Route::get('/tolak-pesanan', [PesananController::class, 'tolak'])->name('pesanan.tolak');
+    Route::get('/terima-pesanan', [PesananController::class, 'terima'])->name('pesanan.terima');
 });
 
 Route::middleware('auth')->group(function () {

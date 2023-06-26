@@ -4,12 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Pesanan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class PesananController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+
     public function index()
     {
         //
@@ -19,6 +22,48 @@ class PesananController extends Controller
         $data['pesanans'] = Pesanan::all()->groupBy('order_id');
         // return dd($data['pesanans']);
         return view('admin.pesanan.index', $data);
+    }
+    public function tolak(Request $request){
+            // return dd($request->all());
+            try {
+                DB::beginTransaction();
+                if(empty($request->order_id) || !isset($request->order_id)){
+                    return abort(404);
+                }
+                $order_id = $request->order_id;
+                $pesanan = Pesanan::where('order_id', $order_id);
+                if($pesanan->count() == 0){
+                    return abort(404);
+                }
+                $pesanan->update(['status'=>'tolak']);
+                DB::commit();
+                return redirect()->back()->with('success','pesanan berhasil ditolak');
+            } catch (\Throwable $th) {
+                DB::rollback();
+                Log::error($th);
+                return redirect()->back()->with('error', 'Terjadi masalah');
+            }
+    }
+    public function terima(Request $request){
+            // return dd($request->all());
+            try {
+                DB::beginTransaction();
+                if(empty($request->order_id) || !isset($request->order_id)){
+                    return abort(404);
+                }
+                $order_id = $request->order_id;
+                $pesanan = Pesanan::where('order_id', $order_id);
+                if($pesanan->count() == 0){
+                    return abort(404);
+                }
+                $pesanan->update(['status'=>'diproses']);
+                DB::commit();
+                return redirect()->back()->with('success','pesanan berhasil diterima');
+            } catch (\Throwable $th) {
+                DB::rollback();
+                Log::error($th);
+                return redirect()->back()->with('error', 'Terjadi masalah');
+            }
     }
 
     /**
